@@ -1,0 +1,74 @@
+.content{
+  margin: auto;
+  margin-top: 5em;
+  color: white;
+}
+.generator{
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  align-items: center;
+  padding: 1em;
+  background-color: rgb(11, 79, 108);
+  width: fit-content;
+  margin: auto;
+}
+.filters{
+width: 100%;
+ display: grid;
+ grid-template-columns: repeat(4,8em);
+ grid-template-rows: auto auto;
+ column-gap: 2em;
+}
+.filters input[type="text"]{
+  font-size: 18px;
+}
+.mehet-fetch{
+  border: none;
+  background-color: orange;
+  font-size: 17px;
+  transition: transform 0.05s ease-in-out;
+}
+.mehet-fetch:active{
+  transform: scale(1.06);
+}
+.generated-words{
+  color: black;
+  width: 80%;
+  margin: auto;
+  margin-top: 3em;
+  min-height: 347px;
+  margin-bottom: 20px;
+}
+.words-list{
+  display: grid;
+  justify-content: center;
+  column-gap: 4em;
+  grid-template-columns: auto auto auto auto auto;
+  row-gap: 8px;
+}
+.words-list .word-item{
+  text-align: left;
+}
+.words-sorter{
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+}
+.words-sorter h2{
+  flex-basis: 300px;
+}
+.words-sorter div{
+  font-size: 20px;
+  flex-basis: 100px;
+}
+.words-sorter div i {
+  cursor: pointer;
+  transition: transform 0.05s ease-in-out; 
+  font-weight: 500;
+}
+.words-sorter div i:active {
+  transform: scale(1.2);
+  color: rgb(69, 69, 69);
+}
