@@ -72,3 +72,10 @@ width: 100%;
   transform: scale(1.2);
   color: rgb(69, 69, 69);
 }
+.words-container{
+  width: fit-content;
+  margin: auto;
+}
+.size-of-res{
+  margin-bottom: 1em;
+}

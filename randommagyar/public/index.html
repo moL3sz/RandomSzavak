@@ -12,19 +12,82 @@
     />
     <link rel="apple-touch-icon" href="%PUBLIC_URL%/logo192.png" />
     <link rel="manifest" href="%PUBLIC_URL%/manifest.json" />
-    <title>React App</title>
+    <title>Magyar szógenerátor</title>
   </head>
   <body>
     <div class="header">
-      <h1 class="title">Magyar szó generátor API</h1>
-
+      <h1 class="title">Magyar szógenerátor API</h1>
     </div>
     <noscript>You need to enable JavaScript to run this app.</noscript>
     <div id="main-container"></div>
+    <div class="description">
+      <div class="desc-container">
+        <h1 style="text-decoration: underline;">Leírás</h1>
+        <div class="proper-description">
+          <div class="desc-content">
+            <p>
+              Tudhatjuk, hogy a magyar nyelv igazán nagy,egyedien teremtett szókicset tartalamaz, de még is arra kapjuk a fejünket hogy minden egyes új <b>generáció</b> magával ránt pár újonnan alkotott modern szavakat.
+              Sejteni lehet már a cím alapján, hogy ez a program mit is tud pontosan. Minden további szűrő feltétellen tudunk szavakat generálni a saját felhasználásunkra. Minden bizonnyal az összes eddigi magyar szavakból tudunk véletlenszerűen válogatni.
+              A kezelő felület letisztúlt, könnyen használható és senkinek nem fog gondot okozni a használata.
+              Magáról a szolgáltatásról a lentebbi <b>dokumentációban</b> tudtok olvasni!
+            </p>
+            <p></p>
+          </div>
+          <div class="altalanos-adatok">
+            <h2 style="margin-top: 0;">Adatok</h2>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="documentation">
+
+
+      <div class="documentation-container">
+        <h1 style="text-decoration: underline;">Dokumentáció</h1>
+        <h3>API használata:</h3>
+        <div class="api-usage">
+          <div class="token-generation">
+            <h2>Használati token generálás:</h2>
+            <div class="token-generate" id="token-generation"></div>
+            <p>A használati token IP címhez van rendelve és minden tokennek 1 hónapos lejárati dátuma van.
+                1 hónap múlva az adatbázsból törlődik.
+                A lentiekben az API-t tudjátok használni az automata újra generáláshoz.
+
+            </p>
+            <p class="fontos">
+              Egy IP címhez csak 1 token tartozhat
+            </p>
+          </div>
+          Ebben a dokumentációban részletes leírást kaptok arról, hogy hogyan kell használni a szolgáltatást.
+          Jelenleg egy végpont létezik az API-hoz, a többi még fejlesztés alatt áll.
+          <div class="type-of-request-tool curl" id="curl-type">
+          </div>
+          <div class="api-token-regeneration">
+            <h2>Token újragenerálás</h2>
+            <div class="terminal-builtin">
+              <div class="prompt">$</div>
+              <div class="command">
+                curl -X GET https://random-magyar-words-api.herokuapp.com/generate_token
+              </div>
+              <div class="copy-command">
+                <i class="fa fa-copy"></i>
+            </div>
+            </div>
+            <div class="api-leiras">
+              <h3>Leírás</h3>
+              <p>
+                Ha erre a végpontra küldesz egy kérést akkor az API a jelenleg érvényes használati tokent fogja vissza küldeni (ha érvényes). Ha már lejárt akkor egy teljesen újat fog generálni a küldő IP címével.
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
     <footer>
       <div class="footer-container">
         <div class="contacts">
-          <h2><i class="fa fa-paper-plane"></i> Contacts</h2>
+          <h2><i class="fa fa-paper-plane"></i> Elérhetőségek</h2>
           <div class="insta">
             <i class="fa fa-instagram"></i> Instagram
           </div>
@@ -32,7 +95,7 @@
             <i class="fa fa-facebook"></i> Facebook
           </div>
           <div class="github">
-            <i class="fa fa-github"></i>   Github  
+               <a href="https://github.com/mol3sz"><i class="fa fa-github"></i> Github </a>  
           </div>
           <div class="email">
             <i class="fas fa-mail-bulk"></i>Email: <span style="font-weight: 300;"> moleszkf@gmail.com</span>

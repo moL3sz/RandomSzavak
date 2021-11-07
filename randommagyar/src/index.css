@@ -8,7 +8,7 @@ body {
     sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  background-color: blanchedalmond;
+  background-color: rgb(248, 234, 212);
   height: 100%;
 }
 
@@ -54,4 +54,174 @@ footer{
 .copyright{
   display: flex;
   align-items: flex-end;
+}
+.description{
+  width: 60%;
+  height: max-content;
+  margin: auto;
+}
+.proper-description{
+  margin-bottom: 5em;
+  display: flex;
+  flex-direction: row;
+  align-items: start;
+}
+@media screen and (max-width: 600px){
+  .proper-description{
+    flex-direction: column;
+  }
+}
+a{
+  color: white;
+  text-decoration: none;
+}
+.desc-content{
+  text-align: justify;
+  padding-right: 5em;
+}
+.desc-content p{
+  line-height: 1.5em;
+}
+.documentation{
+  width: 60%;
+  margin: auto;
+}
+
+.prompt{
+  color: rgb(35, 152, 35);
+  padding: 6px;
+}
+.command{
+  color: white;
+  padding: 6px;
+}
+.terminal-builtin{
+  background-color: rgb(39, 40, 42);
+  border-radius: 6px;
+  font-weight: 300;
+  font-family: "Consolas" sans-serif;
+  font-size: 18px;
+  display: flex;
+  flex-direction: row;
+  padding: 6px;
+}
+.p-title{
+  margin: 0;
+  margin-bottom: 1em;
+  margin-top: 1em;
+}
+.terminal-builtin,.parameters,.p-title{
+  margin-left: 16px;
+}
+.type-of-request-tool{
+  font-weight: bold;
+  padding: 5px 0 5px 0;
+  font-size: 27px;
+  margin: 5px 0;
+  margin-bottom: 30px;
+}
+.copy-command,.copy-token{
+  margin-right: 10px;
+  text-align: right;
+  font-size: 30px;
+  margin-top: 8px;
+  color: white;
+}
+.copy-command i,.copy-token i{
+  transition: transform 0.1s ease-in-out;
+}
+.copy-command i:active, .copy-token i:active{
+  transform: scale(1.1);
+  text-shadow: 0 0 2px white;
+}
+.own-p{
+  color: rgb(255, 80, 103);
+}
+.tool-type{
+  text-transform: capitalize;
+  margin-bottom: .8em;
+}
+.clipboard-success{
+  font-size: 15px;
+  font-weight: 400;
+  float: right;
+}
+.parameters{
+  display: grid;
+  grid-template-columns: auto auto auto;
+  row-gap: 1em;
+  font-size: 16px;
+  font-weight: 400;
+  column-gap: 2em;
+  font-family: Consolas,monospace;
+}
+.param span{
+  border: 2px solid rgb(52, 52, 52);
+  padding: 5px;
+  border-radius: 2px;
+  
+}
+.opt{
+  color: rgb(96, 96, 96);
+}
+.p-desc{
+  font-family: sans-serif;
+}
+.token-place{
+  background-color: rgb(202, 201, 209);
+  border-radius: 5px;
+  border: 2px solid rgb(155, 155, 155);
+  padding: 0px 10px;
+  display: flex;
+  flex-direction: row;
+  overflow-wrap: break-word;
+  align-items: center;
+  min-width: 635px;
+}
+.div-token-gen{
+  overflow-wrap:anywhere;
+}
+.token-generation{
+  margin-bottom: 1em;
+}
+.current-token{
+  flex: 1;
+  overflow-wrap: break-word;
+}
+.copy-token{
+  padding: 3.5px;
+  margin-top: 0;
+}
+.token-generate-button{
+  outline: none;
+  border: none;
+  background-color: rgb(255 165 0);
+  font-size: 18px;
+  margin-top: 0.5em;
+  padding: 2px 10px;
+  border-radius: 5px;
+  transition: transform 0.05s ease-in-out;
+}
+.token-generate-button:active{
+  transform: scale(1.08);
+}
+.fontos{
+  color: red;
+  font-weight: bold;
+  text-decoration: underline;
+
+}
+.fontos::after{
+  content: "!!!!";
+}
+.api-token-regeneration{
+  margin-bottom: 30px;
+}
+.api-leiras{
+  margin-left: 16px;
+}
+.copy-command{
+  float: right;
+  flex: 1;
+  margin-top: 0;
 }

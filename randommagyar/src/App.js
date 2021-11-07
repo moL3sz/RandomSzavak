@@ -4,16 +4,10 @@ import {useState} from "react"
 import $ from "jquery"
 
 const DEFAULT_SIZE = 10;
-const DEFAULT_STARTWITH = "*"
-const DEFAULT_LENGTH = "*"
-
-
-
-
-
-
-function App() {
-  const [words, setWords] = useState({"words":[]})
+const DEFAULT_STARTWITH = ""
+const DEFAULT_LENGTH = ""
+export default function App() {
+  const [words,  setWords] = useState({"words":[]})
   const [sortByName_ASC_DESC, setSortName_ASC_DESC] = useState(true) //true ASC, false DESC
   const [sortByLenght_ASC_DESC, setSortLenght_ASC_DESC] = useState(true) 
 
@@ -37,15 +31,10 @@ function App() {
 
     setWords(currentWords)
   }
-
-
   const setGridTemplate = (size) =>{
     const numCol = parseInt(size/10) <= 5 ? parseInt(size/10) : 5
-    console.log(numCol)
     $(".words-list").css("grid-template-columns",`repeat(${numCol},7em)`)
   }
-
-
   const getWords = ()=>{
     const numberOfWords = document.getElementById("number-of-words").value;
     const startWith = document.getElementById("word-startwith").value;
@@ -56,12 +45,17 @@ function App() {
     const l = length != "" ? length : DEFAULT_LENGTH;
     const formData = {
       size: N,
-      sw: sW
+      sw: sW,
+      l: length
+
     }
-    const url = `http://127.0.0.1:5000/getwords/${N}/${sW}/${l}`
+    const url = `https://random-magyar-words-api.herokuapp.com/getwords`
     fetch(url,{
-      method:"GET",
-      mode:"cors",
+      method:"POST",
+      body:JSON.stringify(formData),
+      headers:{
+        "Content-Type":"application/json"
+      }
     })
     .then(res => res.json())
     .then(res =>{
@@ -69,26 +63,24 @@ function App() {
       setGridTemplate(res.words.length)
       setWords(res)
     })
-
-    
   }
+
   return (
     <div className="content">
       <div className="generator">
         <div className="generator-title">
-          <h2>Random magyar szó generator</h2>
+          <h2>Random magyar szógenerátor</h2>
         </div>
         <div className="use-generator">
           <div className="filters">
-            <label htmlFor="number-of-words">Szó mennyiség</label>
-            <label htmlFor="word-startwith">Mivel kezdődjön</label>
-            <label htmlFor="word-length">Szó hossz</label>
+            <label htmlFor="number-of-words">Szó mennyiség:</label>
+            <label htmlFor="word-startwith">Mivel kezdődjön:</label>
+            <label htmlFor="word-length">Szó hossz:</label>
             <label htmlFor="start"></label>
             <input type="text" id="number-of-words"/>
             <input type="text" id="word-startwith"/>
             <input type="text" id="word-length"/>
-
-            <button className="mehet-fetch" onClick={getWords}>Mehet</button>
+            <button className="mehet-fetch" onClick={getWords}>Mehet <i className="fa fa-search"></i></button>
           </div>
         </div>
       </div>
@@ -111,6 +103,11 @@ function App() {
               Hossz: <i className={!sortByLenght_ASC_DESC ? "fa fa-sort-amount-asc" : "fa fa-sort-amount-desc"} onClick={sortWordsByLength}></i>
             </div>
           </div>
+
+        <div className="words-container">
+        <div className="size-of-res">
+          <span style={{fontWeight:"bold"}}>Össesen: {words.words.length}db</span>
+        </div>
         <div className="words-list">
           {
             words.words.map(word => {
@@ -122,9 +119,8 @@ function App() {
             })
           }
         </div>
+        </div>
       </div>
     </div>
   );
 }
-
-export default App;
