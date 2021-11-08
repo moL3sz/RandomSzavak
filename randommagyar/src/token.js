@@ -1,12 +1,12 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import {useCookies} from "react-cookie"
+import { getCookie } from "./essentials";
 
 
 export default function TokenGeneration(){
+
     const [cookies, setCookie] = useCookies(['access_token'])
     const [token, setToken] = useState(cookies.access_token ? cookies.access_token : "")
-    const widthOffset = 15;
-    const DEFAULT_LENGTH = 64+widthOffset;
     const generateToken = ()=>{
         fetch("https://random-magyar-words-api.herokuapp.com/generate_token",{
           method:"GET"
@@ -15,13 +15,13 @@ export default function TokenGeneration(){
         .then(res=>{
             const [year,month,day] = res.experation_date.split("-").map(e => parseInt(e))
             const expires_date = new Date(year,month-1,day,12)
-            if(!cookies.access_token){
+            if(!getCookie("access_token")){
                 setCookie("access_token",res.access_token,{path:"/",expires:expires_date})
             }
             setToken(res.access_token)
+
         })
     }
-
     const CopyToken = ()=>{
         if(token === ""){
             return

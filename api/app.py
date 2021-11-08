@@ -6,8 +6,7 @@ from controller import *
 
 app = Flask(__name__)
 app.config['JSON_AS_ASCII'] = False
-cors = CORS(app, resources={r"/api/*": {"origins": "*"}})
-
+cors = CORS(app, resources={r"/*": {"origins": "*"}})
 @app.route("/generate_token")
 @cross_origin()
 def generateToken():
@@ -16,12 +15,13 @@ def generateToken():
         token,creation_date,experation_date = addTokenToDb(ip_address)
         return {"access_token":token,"creation_date":str(creation_date),"experation_date":str(experation_date)}
     except Exception as e:
-        print(e)
         abort(500)
 
+
+
 @app.route("/getwords", methods=["GET","POST"])
-@access_required
 @cross_origin()
+@access_required
 def getWords():
     try:
         params = request.get_json()
@@ -41,9 +41,7 @@ def getWords():
         else:
             selectedWords = selectRandomWords(size)         
         returnData = {"words":list(selectedWords)}
-        print(returnData)
-        return returnData
+        return jsonify(returnData)
     except Exception as e:
-        abort(403)
         raise e
     return "300"

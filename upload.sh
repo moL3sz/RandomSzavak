@@ -1,2 +1,3 @@
-bash randommagyar/upload.sh
-bash api/upload.sh
+git add .
+git commit #this will open nano for the commit msg
+git push 

@@ -86,13 +86,19 @@ def checkIPHasToken(ip):
     if len(data) > 0:
         return data[0]
     return [None]*3
+def validToken(token):
+    sql = "SELECT token from access_tokens WHERE token = %s"
+    cursor = db.cursor()
+    cursor.execute(sql,(token,))
+    data = cursor.fetchall()
+    return True if data else False
 def access_required(f):
     def handler(*args, **kw):
         request_data = request.get_json()
         sender_ip = request.remote_addr
+        print(sender_ip)
         if "access_token" in request_data:
-            data = checkIPHasToken(sender_ip)
-            if data[0] == request_data["access_token"]:
+            if validToken(request_data["access_token"]):
                 return f(*args,**kw)
             else:
                 abort(401)

@@ -2,14 +2,15 @@ import logo from './logo.svg';
 import './App.css';
 import {useState} from "react"
 import $ from "jquery"
-
+import {getCookie} from "./essentials"
 const DEFAULT_SIZE = 10;
 const DEFAULT_STARTWITH = ""
 const DEFAULT_LENGTH = ""
 export default function App() {
   const [words,  setWords] = useState({"words":[]})
   const [sortByName_ASC_DESC, setSortName_ASC_DESC] = useState(true) //true ASC, false DESC
-  const [sortByLenght_ASC_DESC, setSortLenght_ASC_DESC] = useState(true) 
+  const [sortByLenght_ASC_DESC, setSortLenght_ASC_DESC] = useState(true)
+  const [tokenError,setTokenError] = useState(-1)
 
   const sortWordsByName = () =>{
     const currentWords = words
@@ -36,6 +37,12 @@ export default function App() {
     $(".words-list").css("grid-template-columns",`repeat(${numCol},7em)`)
   }
   const getWords = ()=>{
+    const current_token = getCookie("access_token")
+    setTokenError(0)
+    if (current_token == ""){
+      setTokenError(1)
+      return 
+    }
     const numberOfWords = document.getElementById("number-of-words").value;
     const startWith = document.getElementById("word-startwith").value;
     const length = document.getElementById("word-length").value;
@@ -46,8 +53,8 @@ export default function App() {
     const formData = {
       size: N,
       sw: sW,
-      l: length
-
+      l: length,
+      access_token: current_token
     }
     const url = `https://random-magyar-words-api.herokuapp.com/getwords`
     fetch(url,{
@@ -62,6 +69,9 @@ export default function App() {
       //make the wordlist columns
       setGridTemplate(res.words.length)
       setWords(res)
+    })
+    .catch(err => {
+      throw "Something with API";
     })
   }
 
@@ -83,6 +93,11 @@ export default function App() {
             <button className="mehet-fetch" onClick={getWords}>Mehet <i className="fa fa-search"></i></button>
           </div>
         </div>
+        <span className="error-token">
+          {
+            tokenError == 1 ? "Kérem generáljon egy token lejebb!" : ""
+          }
+        </span>
       </div>
       <div className="generated-words">
         <h2 style={

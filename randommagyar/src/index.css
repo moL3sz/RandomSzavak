@@ -225,3 +225,17 @@ a{
   flex: 1;
   margin-top: 0;
 }
+@media screen and (max-width: 840px) {
+  .proper-description{
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+  }
+  .desc-content{
+    padding: 0;
+  }
+  .desc-container h1{
+    text-align: center;
+  }
+  
+}
